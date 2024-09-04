@@ -1,5 +1,6 @@
 'use client'
 
+import { register } from '@/actions/register'
 import CardError from '@/components/cards/card-error'
 import CardSuccess from '@/components/cards/card-success'
 import { Button } from '@/components/ui/button'
@@ -14,7 +15,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { RegisterSchema } from '@/schemas/register.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import AuthCard from '../auth.card'
@@ -22,6 +23,7 @@ import AuthCard from '../auth.card'
 const RegisterForm = () => {
 	const [error, setError] = useState<string>('')
 	const [success, setSuccess] = useState<string>('')
+	const [transition, setTransition] = useTransition()
 
 	const form = useForm<z.infer<typeof RegisterSchema>>({
 		resolver: zodResolver(RegisterSchema),
@@ -36,6 +38,13 @@ const RegisterForm = () => {
 	const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
 		setError('')
 		setSuccess('')
+
+		setTransition(() => {
+			register(data).then(res => {
+				if (res.error) setError(res.error)
+				if (res.success) setSuccess(res.success)
+			})
+		})
 
 		console.log(data)
 	}
@@ -55,6 +64,7 @@ const RegisterForm = () => {
 										<Input
 											{...field}
 											type='email'
+											disabled={transition}
 											placeholder='example@email.com'
 										/>
 									</FormControl>
@@ -66,6 +76,7 @@ const RegisterForm = () => {
 						<FormField
 							control={form.control}
 							name='username'
+							disabled={transition}
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Username</FormLabel>
@@ -80,6 +91,7 @@ const RegisterForm = () => {
 						<FormField
 							control={form.control}
 							name='password'
+							disabled={transition}
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Password</FormLabel>
@@ -98,6 +110,7 @@ const RegisterForm = () => {
 						<FormField
 							control={form.control}
 							name='repeatedPassword'
+							disabled={transition}
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Repeat Password</FormLabel>

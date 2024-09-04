@@ -5,7 +5,7 @@ import { Button } from './ui/button'
 
 const Footer = () => {
 	return (
-		<div className='bg-background-LIGHTMUTED/50 dark:bg-background-DARKMUTED/50 relative bottom-0 w-full p-6 text-center'>
+		<div className='bg-background-LIGHTMUTED/50 dark:bg-background-DARK relative bottom-0 w-full p-6 text-center'>
 			<Logo className='text-3xl' />
 
 			<div className='flex gap-4 justify-center'>

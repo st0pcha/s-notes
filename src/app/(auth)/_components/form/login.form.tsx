@@ -1,5 +1,6 @@
 'use client'
 
+import { login } from '@/actions/login'
 import CardError from '@/components/cards/card-error'
 import CardSuccess from '@/components/cards/card-success'
 import { Button } from '@/components/ui/button'
@@ -14,7 +15,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { LoginSchema } from '@/schemas/login.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import AuthCard from '../auth.card'
@@ -22,6 +23,7 @@ import AuthCard from '../auth.card'
 const LoginForm = () => {
 	const [error, setError] = useState<string>('')
 	const [success, setSuccess] = useState<string>('')
+	const [transition, setTransition] = useTransition()
 
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
@@ -35,7 +37,12 @@ const LoginForm = () => {
 		setError('')
 		setSuccess('')
 
-		console.log(data)
+		setTransition(() => {
+			login(data).then(res => {
+				if (res.error) setError(res.error)
+				if (res.success) setSuccess(res.success)
+			})
+		})
 	}
 
 	return (
@@ -46,6 +53,7 @@ const LoginForm = () => {
 						<FormField
 							control={form.control}
 							name='email'
+							disabled={transition}
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Email</FormLabel>
@@ -64,6 +72,7 @@ const LoginForm = () => {
 						<FormField
 							control={form.control}
 							name='password'
+							disabled={transition}
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Password</FormLabel>
