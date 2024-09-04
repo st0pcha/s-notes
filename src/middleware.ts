@@ -5,14 +5,18 @@ import authConfig from './config/auth.config'
 const { auth } = NextAuth(authConfig)
 
 export default auth(req => {
-	const { url, auth, nextUrl } = req
+	const { auth, nextUrl } = req
 	const isLoggedIn = !!auth
 
 	// console.log(`isLoggedIn?: ${isLoggedIn}`)
 
-	const pathname = nextUrl.pathname
+	const { pathname, origin } = nextUrl
 	if (pathname === '/auth' && isLoggedIn) {
-		return NextResponse.redirect(new URL('/', url))
+		return NextResponse.redirect(new URL('/', origin))
+	}
+
+	if (pathname.startsWith('/dashboard') && !isLoggedIn) {
+		return NextResponse.redirect(new URL('/auth', origin))
 	}
 
 	NextResponse.next()

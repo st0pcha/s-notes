@@ -29,7 +29,7 @@ const RegisterForm = () => {
 		resolver: zodResolver(RegisterSchema),
 		defaultValues: {
 			email: '',
-			username: '',
+			name: '',
 			password: '',
 			repeatedPassword: '',
 		},
@@ -45,8 +45,6 @@ const RegisterForm = () => {
 				if (res.success) setSuccess(res.success)
 			})
 		})
-
-		console.log(data)
 	}
 
 	return (
@@ -75,7 +73,7 @@ const RegisterForm = () => {
 
 						<FormField
 							control={form.control}
-							name='username'
+							name='name'
 							disabled={transition}
 							render={({ field }) => (
 								<FormItem>

@@ -1,5 +1,5 @@
 import Logo from '@/components/logo'
-import AuthTab from '../_components/auth.tab'
+import AuthTab from './_components/auth.tab'
 
 const AuthPage = () => {
 	return (

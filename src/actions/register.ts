@@ -16,14 +16,14 @@ export const register = async (
 	const validatedData = RegisterSchema.safeParse(data)
 	if (!validatedData.success) return { error: 'Invalid data!' }
 
-	const { email, username, password, repeatedPassword } = validatedData.data
+	const { email, name, password, repeatedPassword } = validatedData.data
 
 	if (password !== repeatedPassword)
 		return { error: "The passwords don't match" }
 
 	const user = await prisma.user.findFirst({
 		where: {
-			OR: [{ email }, { username }],
+			OR: [{ email }, { name }],
 		},
 	})
 
@@ -33,7 +33,7 @@ export const register = async (
 	await prisma.user.create({
 		data: {
 			email,
-			username,
+			name,
 			password: await hashPassword(password),
 		},
 	})
