@@ -3,26 +3,12 @@
 import Logo from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { ArrowRight, Settings2 } from 'lucide-react'
+import { ArrowRight, Home, Plus, Settings2, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 import HideButton from './hide.button'
 
-const notes = [
-	'note',
-	'note',
-	'note',
-	'note',
-	'note',
-	'note',
-	'note',
-	'note',
-	'note',
-	'note',
-	'note',
-	'note',
-	'note',
-]
+const notes = ['note', 'note', 'note', 'note', 'note', 'note', 'note']
 
 const DashboardMenu = () => {
 	const [isHidden, setIsHidden] = useState(true)
@@ -43,7 +29,7 @@ const DashboardMenu = () => {
 					<div>
 						<Button variant='ghost' asChild>
 							<span className='flex text-lg'>
-								<Settings2 className='mr-2 h-4 w-4' /> Settings
+								<Home className='mr-2 h-4 w-4' /> Home
 							</span>
 						</Button>
 
@@ -55,9 +41,31 @@ const DashboardMenu = () => {
 
 						<Button variant='ghost' asChild>
 							<span className='flex text-lg'>
-								<Settings2 className='mr-2 h-4 w-4' /> Settings
+								<Trash2 className='mr-2 h-4 w-4' /> Trash
 							</span>
 						</Button>
+
+						<Button variant='ghost' asChild>
+							<span className='flex text-lg'>
+								<Plus className='mr-2 h-4 w-4' /> Create
+							</span>
+						</Button>
+					</div>
+
+					<div className='mt-12'>
+						<h1 className='text-lg font-bold underline text-center mb-2'>
+							Favorites
+						</h1>
+						<div>
+							{notes.map((note, idx) => (
+								<div key={idx} className='hover:bg-accent/50'>
+									<Link href='/' className='flex items-center'>
+										<ArrowRight className='mr-2 h-4 w-4' />
+										{note}
+									</Link>
+								</div>
+							))}
+						</div>
 					</div>
 
 					<div className='mt-12'>
