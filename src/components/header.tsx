@@ -1,5 +1,6 @@
+import StartNowButton from './buttons/start-now.button'
+import ThemeSwitcher from './buttons/theme-switcher.button'
 import Logo from './logo'
-import StartNowButton from './start-now.button'
 
 const Header = () => {
 	return (
@@ -8,6 +9,7 @@ const Header = () => {
 
 			<div className='flex ml-auto items-center justify-between gap-4'>
 				<StartNowButton />
+				<ThemeSwitcher />
 			</div>
 		</div>
 	)

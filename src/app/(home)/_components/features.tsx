@@ -12,7 +12,7 @@ const Features = () => {
 				{features.map((feature, idx) => (
 					<Card
 						key={idx}
-						className='bg-background-LIGHTMUTED dark:bg-background-DARKMUTED'
+						className='bg-background-LIGHTMUTED dark:bg-background-DARKMUTED hover:scale-105 duration-200'
 					>
 						<CardHeader className='text-3xl text-center'>
 							{feature.icon}

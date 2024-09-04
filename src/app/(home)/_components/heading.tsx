@@ -1,5 +1,5 @@
+import StartNowButton from '@/components/buttons/start-now.button'
 import Logo from '@/components/logo'
-import StartNowButton from '@/components/start-now.button'
 
 const Heading = () => {
 	return (
