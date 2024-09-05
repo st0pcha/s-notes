@@ -3,6 +3,7 @@
 import { limits } from '@/config/limits.config'
 import { prisma } from '@/lib/database'
 import {
+	getNotesFavorite,
 	getNotesWhereUser,
 	getNotesWhereUserOwner,
 } from '@/lib/database/note.db'
@@ -22,11 +23,11 @@ export const createNote = async (userId?: string): Promise<NoteResponse> => {
 	const notes = [
 		...(await getNotesWhereUser(userId)),
 		...(await getNotesWhereUserOwner(userId)),
+		...(await getNotesFavorite(userId)),
 	]
 
 	console.log(notes.length)
-	if (notes.length >= limits.notes)
-		return { error: `Notes limit reached! ${notes.length}/${limits.notes}` }
+	if (notes.length >= limits.notes) return { error: `Notes limit reached!` }
 
 	const note = await prisma.note.create({ data: { ownerId: user.id } })
 
