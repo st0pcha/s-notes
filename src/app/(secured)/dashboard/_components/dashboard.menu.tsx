@@ -3,8 +3,9 @@
 import Logo from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { Home, Plus, Settings2, Trash2 } from 'lucide-react'
+import { Home, Settings2, Trash2 } from 'lucide-react'
 import { useState } from 'react'
+import CreateNoteButton from './create-note.button'
 import GetNotes from './get-notes'
 import HideButton from './hide.button'
 
@@ -21,33 +22,30 @@ const DashboardMenu = () => {
 				)}
 			>
 				<HideButton status={isHidden} onClick={() => setIsHidden(!isHidden)} />
+
 				<div className={cn(isHidden && 'hidden')}>
 					<Logo className='text-3xl underline text-center mb-8' />
 
 					<div>
-						<Button variant='ghost' asChild>
+						<Button variant='ghost'>
 							<span className='flex text-lg'>
 								<Home className='mr-2 h-4 w-4' /> Home
 							</span>
 						</Button>
 
-						<Button variant='ghost' asChild>
+						<Button variant='ghost'>
 							<span className='flex text-lg'>
 								<Settings2 className='mr-2 h-4 w-4' /> Settings
 							</span>
 						</Button>
 
-						<Button variant='ghost' asChild>
+						<Button variant='ghost'>
 							<span className='flex text-lg'>
 								<Trash2 className='mr-2 h-4 w-4' /> Trash
 							</span>
 						</Button>
 
-						<Button variant='ghost' asChild>
-							<span className='flex text-lg'>
-								<Plus className='mr-2 h-4 w-4' /> Create
-							</span>
-						</Button>
+						<CreateNoteButton />
 					</div>
 
 					<GetNotes type='favorite' />
