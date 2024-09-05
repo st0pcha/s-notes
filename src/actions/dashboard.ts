@@ -20,10 +20,11 @@ export const createNote = async (userId?: string): Promise<NoteResponse> => {
 	if (!user) return { error: 'User not exist!' }
 
 	const notes = [
-		await getNotesWhereUser(userId),
-		await getNotesWhereUserOwner(userId),
+		...(await getNotesWhereUser(userId)),
+		...(await getNotesWhereUserOwner(userId)),
 	]
 
+	console.log(notes.length)
 	if (notes.length >= limits.notes)
 		return { error: `Notes limit reached! ${notes.length}/${limits.notes}` }
 
