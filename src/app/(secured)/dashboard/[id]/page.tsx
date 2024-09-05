@@ -1,6 +1,6 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
+import { useUser } from '@/hooks/use-user'
 import { redirect, RedirectType } from 'next/navigation'
 import DashboardMenu from '../_components/dashboard.menu'
 
@@ -11,19 +11,15 @@ interface DashboardPageProps {
 }
 
 const DashboardPage = ({ params }: DashboardPageProps) => {
-	const { data: session } = useSession()
-	if (!session?.user) return redirect('/', RedirectType.push)
+	const user = useUser()
+	if (!user) return redirect('/', RedirectType.push)
 
 	const { id } = params
 
 	let isIdValid = false
-	if (session.user.id === id) isIdValid = true
+	if (user.id === id) isIdValid = true
 
-	const notes = [
-		...session.user.notesIn,
-		...session.user.notesOwner,
-		...session.user.favoriteNotes,
-	]
+	const notes = [...user.notesIn, ...user.notesOwner, ...user.favoriteNotes]
 	const anyNoteWithThisIdExists = notes.some(n => n.id === id)
 	if (anyNoteWithThisIdExists) isIdValid = true
 

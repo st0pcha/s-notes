@@ -1,7 +1,7 @@
 'use client'
 
+import { useUser } from '@/hooks/use-user'
 import { ArrowRight } from 'lucide-react'
-import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
 interface GetNotesProps {
@@ -9,12 +9,12 @@ interface GetNotesProps {
 }
 
 const GetNotes = ({ type }: GetNotesProps) => {
-	const { data: session } = useSession()
-	if (!session) return null
+	const user = useUser()
+	if (!user) return null
 
-	const allNotes = [...session.user.notesIn, ...session.user.notesOwner]
+	const allNotes = [...user.notesIn, ...user.notesOwner]
 	let notes = allNotes
-	if (type === 'favorite') notes = session.user.favoriteNotes
+	if (type === 'favorite') notes = user.favoriteNotes
 
 	if (allNotes.length === 0) return null
 

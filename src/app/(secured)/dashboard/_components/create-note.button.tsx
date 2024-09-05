@@ -3,17 +3,18 @@
 import { createNote } from '@/actions/dashboard'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/hooks/use-toast'
+import { useUser } from '@/hooks/use-user'
 import { Plus } from 'lucide-react'
-import { useSession } from 'next-auth/react'
 
 const CreateNoteButton = () => {
-	const { data: session } = useSession()
+	const user = useUser()
 	const { toast } = useToast()
 
 	const onClick = async () => {
-		createNote(session?.user.id).then(res => {
+		createNote(user?.id).then(res => {
 			if (res.error) {
 				toast({
+					variant: 'destructive',
 					title: 'Uh.. Something went wrong.',
 					description: res.error,
 				})
