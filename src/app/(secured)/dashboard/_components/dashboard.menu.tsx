@@ -3,27 +3,25 @@
 import Logo from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { ArrowRight, Home, Plus, Settings2, Trash2 } from 'lucide-react'
-import Link from 'next/link'
+import { Home, Plus, Settings2, Trash2 } from 'lucide-react'
 import { useState } from 'react'
+import GetNotes from './get-notes'
 import HideButton from './hide.button'
 
-const notes = ['note', 'note', 'note', 'note', 'note', 'note', 'note']
-
 const DashboardMenu = () => {
-	const [isHidden, setIsHidden] = useState(true)
+	const [isHidden, setIsHidden] = useState(false)
 
 	return (
 		<>
 			<div
 				className={cn(
 					'bg-background-LIGHTMUTED/50 dark:bg-background-DARKMUTED/50  relative h-screen w-60 p-6 px-4 flex flex-col',
-					!isHidden &&
+					isHidden &&
 						'w-0 hover:bg-background-LIGHTMUTED/80 hover:dark:bg-background-DARKMUTED/80 duration-300'
 				)}
 			>
 				<HideButton status={isHidden} onClick={() => setIsHidden(!isHidden)} />
-				<div className={cn(!isHidden && 'hidden')}>
+				<div className={cn(isHidden && 'hidden')}>
 					<Logo className='text-3xl underline text-center mb-8' />
 
 					<div>
@@ -52,37 +50,8 @@ const DashboardMenu = () => {
 						</Button>
 					</div>
 
-					<div className='mt-12'>
-						<h1 className='text-lg font-bold underline text-center mb-2'>
-							Favorites
-						</h1>
-						<div>
-							{notes.map((note, idx) => (
-								<div key={idx} className='hover:bg-accent/50'>
-									<Link href='/' className='flex items-center'>
-										<ArrowRight className='mr-2 h-4 w-4' />
-										{note}
-									</Link>
-								</div>
-							))}
-						</div>
-					</div>
-
-					<div className='mt-12'>
-						<h1 className='text-lg font-bold underline text-center mb-2'>
-							Notes
-						</h1>
-						<div>
-							{notes.map((note, idx) => (
-								<div key={idx} className='hover:bg-accent/50'>
-									<Link href='/' className='flex items-center'>
-										<ArrowRight className='mr-2 h-4 w-4' />
-										{note}
-									</Link>
-								</div>
-							))}
-						</div>
-					</div>
+					<GetNotes type='favorite' />
+					<GetNotes type='all' />
 				</div>
 			</div>
 		</>

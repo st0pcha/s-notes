@@ -1,8 +1,6 @@
-'use client'
-
-import StartNowButton from './buttons/start-now.button'
-import ThemeSwitcher from './buttons/theme-switcher.button'
-import Logo from './logo'
+import StartNowButton from '@/app/(public)/_components/start-now.button'
+import ThemeSwitcher from '../../../components/buttons/theme-switcher.button'
+import Logo from '../../../components/logo'
 
 const Header = () => {
 	return (

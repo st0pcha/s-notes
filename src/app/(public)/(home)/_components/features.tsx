@@ -1,5 +1,5 @@
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { features } from '@/config/data.config'
-import { Card, CardContent, CardHeader } from '../../../components/ui/card'
 
 const Features = () => {
 	return (

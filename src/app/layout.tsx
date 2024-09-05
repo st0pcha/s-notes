@@ -5,20 +5,20 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-	title: 'Auth | s-Notes',
-	description: 'Auth Page',
+interface RootLayoutProps {
+	children: React.ReactNode
 }
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+export const metadata: Metadata = {
+	title: 's-Notes',
+	description: 'Notes Web-app',
+}
+
+const RootLayout = async ({ children }: RootLayoutProps) => {
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<Providers>
-					<main className='h-full pt-24 md:pt-8 bg-background dark:bg-background-DARK'>
-						{children}
-					</main>
-				</Providers>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	)

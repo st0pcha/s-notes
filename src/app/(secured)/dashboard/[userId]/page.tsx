@@ -8,14 +8,14 @@ interface DashboardPageProps {
 
 const DashboardPage = ({ params }: DashboardPageProps) => {
 	return (
-		<>
+		<div className='flex'>
 			<DashboardMenu />
 			<div className='flex'>
 				<div className='flex-1 p-6'>
 					<h1 className='text-5xl'>{params.userId}</h1>
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }
 

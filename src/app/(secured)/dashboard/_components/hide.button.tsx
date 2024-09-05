@@ -14,8 +14,8 @@ const HideButton = ({ status, onClick }: HideButtonProps) => {
 			size='icon'
 			className={cn(
 				'mt-4 rounded-xl absolute top-3',
-				status && 'right-1',
-				!status && 'left-3'
+				!status && 'right-1',
+				status && 'left-3'
 			)}
 			onClick={onClick}
 		>

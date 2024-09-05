@@ -1,9 +1,9 @@
-import Features from '@/app/(home)/_components/features'
-import Heading from '@/app/(home)/_components/heading'
+import Features from './_components/features'
+import Heading from './_components/heading'
 
-const Home = () => {
+const HomePage = () => {
 	return (
-		<div className='min-h-full w-full flex flex-col'>
+		<div className='pt-24 min-h-full w-full flex flex-col'>
 			<div className='flex items-center justify-center text-center gap-y-8 flex-1 flex-col pb-10'>
 				<Heading />
 			</div>
@@ -15,4 +15,4 @@ const Home = () => {
 	)
 }
 
-export default Home
+export default HomePage

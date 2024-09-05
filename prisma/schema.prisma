@@ -55,8 +55,9 @@ model User {
   password  String
   createdAt DateTime @default(now()) @map("created_at")
 
-  Notes          Note[] @relation(name: "note_owner")
-  NotesWhereUser Note[] @relation(name: "note_users")
+  Notes                Note[] @relation(name: "note_owner")
+  NotesWhereUser       Note[] @relation(name: "note_users")
+  NotesWhereInFavorite Note[] @relation(name: "note_users_favorite")
 
   @@map("users")
 }
@@ -67,13 +68,14 @@ model Note {
   title String @default("Untitled")
   data  Json?
 
-  isPrivate  Boolean  @default(true) @map("is_private")
-  isFavorite Boolean  @default(false) @map("is_favorite")
-  createdAt  DateTime @default(now()) @map("created_at")
+  isPrivate Boolean  @default(true) @map("is_private")
+  createdAt DateTime @default(now()) @map("created_at")
 
   owner   User   @relation(name: "note_owner", fields: [ownerId], references: [id])
   ownerId String @map("owner_id")
-  users   User[] @relation(name: "note_users")
+
+  users         User[] @relation(name: "note_users")
+  usersFavorite User[] @relation(name: "note_users_favorite")
 
   @@map("notes")
 }
