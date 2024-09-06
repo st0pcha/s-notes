@@ -15,7 +15,7 @@ const DashboardMenu = () => {
 	return (
 		<div
 			className={cn(
-				'bg-background-LIGHTMUTED/50 dark:bg-background-DARKMUTED/50  relative h-screen w-60 p-6 px-4 flex flex-col',
+				'bg-background-LIGHTMUTED/50 dark:bg-background-DARKMUTED/50 relative h-full w-60 p-6 px-4 flex flex-col',
 				isHidden && 'w-0 bg-transparent dark:bg-transparent'
 			)}
 		>

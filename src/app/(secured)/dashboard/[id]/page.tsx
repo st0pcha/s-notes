@@ -1,8 +1,10 @@
 'use client'
 
 import { useUser } from '@/hooks/use-user'
+import dynamic from 'next/dynamic'
 import { redirect, RedirectType } from 'next/navigation'
 import DashboardMenu from '../_components/dashboard.menu'
+import NoteContent from '../_components/note'
 
 interface DashboardPageProps {
 	params: {
@@ -20,18 +22,21 @@ const DashboardPage = ({ params }: DashboardPageProps) => {
 	if (user.id === id) isIdValid = true
 
 	const notes = [...user.notesIn, ...user.notesOwner, ...user.favoriteNotes]
-	const anyNoteWithThisIdExists = notes.some(n => n.id === id)
-	if (anyNoteWithThisIdExists) isIdValid = true
+	const note = notes.find(n => n.id === id)
+	if (note) isIdValid = true
 
 	if (!isIdValid) return redirect('/', RedirectType.push)
 
+	const Editor = dynamic(() => import('../_components/editor'), { ssr: false })
+
 	return (
-		<div className='flex'>
+		<div className='flex h-screen'>
 			<DashboardMenu />
-			<div className='flex'>
-				<div className='flex-1 p-6'>
-					<h1 className='text-5xl'>{id}</h1>
-				</div>
+
+			<div className='flex-1 p-6 overflow-auto'>
+				{/* <h1 className='text-5xl'>{id}</h1> */}
+
+				<NoteContent user={user} note={note} />
 			</div>
 		</div>
 	)
