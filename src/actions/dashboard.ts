@@ -15,7 +15,7 @@ interface NoteResponse {
 }
 
 export const createNote = async (userId?: string): Promise<NoteResponse> => {
-	if (!userId) return { error: 'Unknown error!' }
+	if (!userId) return { error: 'Authorize first before this action!' }
 
 	const user = await prisma.user.findUnique({ where: { id: userId } })
 	if (!user) return { error: 'User not exist!' }
@@ -26,10 +26,26 @@ export const createNote = async (userId?: string): Promise<NoteResponse> => {
 		...(await getNotesFavorite(userId)),
 	]
 
-	console.log(notes.length)
 	if (notes.length >= limits.notes) return { error: `Notes limit reached!` }
 
 	const note = await prisma.note.create({ data: { ownerId: user.id } })
+
+	return { note }
+}
+
+export const deleteNote = async (
+	userId?: string,
+	noteId?: string
+): Promise<NoteResponse> => {
+	if (!userId) return { error: 'Authorize first before this action!' }
+
+	const user = await prisma.user.findUnique({ where: { id: userId } })
+	if (!user) return { error: 'User not exist!' }
+
+	if (!noteId) return { error: 'This note is not exists or already deleted!' }
+	const note = await prisma.note.delete({ where: { id: noteId } })
+
+	if (!note) return { error: 'This note is not exists or already deleted!' }
 
 	return { note }
 }

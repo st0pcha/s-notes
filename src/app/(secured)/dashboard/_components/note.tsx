@@ -1,11 +1,11 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useToast } from '@/hooks/use-toast'
 import { ExtendedUser } from '@/types/next-auth'
 import { Note } from '@prisma/client'
 import { formatDistance } from 'date-fns'
-import { Delete, Settings2 } from 'lucide-react'
+import { Settings2 } from 'lucide-react'
+import DeleteNoteButton from './delete-note.button'
 import Editor from './editor'
 
 interface NoteProps {
@@ -14,17 +14,7 @@ interface NoteProps {
 }
 
 const NoteContent = ({ note, user }: NoteProps) => {
-	const { toast } = useToast()
 	if (!note) return null
-
-	const handleNoteDelete = () => {
-		if (note.ownerId === user.id) {
-			toast({
-				variant: 'destructive',
-				title: 'You are not this note creator!',
-			})
-		}
-	}
 
 	return (
 		<div className=''>
@@ -43,9 +33,7 @@ const NoteContent = ({ note, user }: NoteProps) => {
 						<Settings2 className='mr-2 h-4 w-4' /> Settings
 					</Button>
 
-					<Button variant='destructive' onClick={handleNoteDelete}>
-						<Delete className='mr-2 h-4 w-4' /> Delete
-					</Button>
+					<DeleteNoteButton user={user} note={note} />
 				</div>
 			</div>
 

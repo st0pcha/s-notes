@@ -1,7 +1,6 @@
 'use client'
 
 import { useUser } from '@/hooks/use-user'
-import dynamic from 'next/dynamic'
 import { redirect, RedirectType } from 'next/navigation'
 import DashboardMenu from '../_components/dashboard.menu'
 import NoteContent from '../_components/note'
@@ -26,8 +25,6 @@ const DashboardPage = ({ params }: DashboardPageProps) => {
 	if (note) isIdValid = true
 
 	if (!isIdValid) return redirect('/', RedirectType.push)
-
-	const Editor = dynamic(() => import('../_components/editor'), { ssr: false })
 
 	return (
 		<div className='flex h-screen'>

@@ -50,7 +50,7 @@ const DashboardMenu = () => {
 						</span>
 					</Button>
 
-					<CreateNoteButton />
+					<CreateNoteButton user={user} />
 				</div>
 
 				<GetNotes type='favorite' />
