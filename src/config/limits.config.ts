@@ -1,3 +1,3 @@
 export const limits = {
-	notes: 12,
+	notes: 10,
 }
