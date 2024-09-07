@@ -615,16 +615,9 @@
     "@radix-ui/react-use-callback-ref" "1.1.0"
     "@radix-ui/react-use-controllable-state" "1.1.0"
 
-"@radix-ui/react-slot@1.1.0":
+"@radix-ui/react-slot@1.1.0", "@radix-ui/react-slot@^1.1.0":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.1.0.tgz"
-  integrity sha512-FUCf5XMfmW4dtYl69pdS4DbxKy8nj4M7SafBgPllysxmdachynNflAdp/gCsnYWNDnge6tI9onzMp5ARYc1KNw==
-  dependencies:
-    "@radix-ui/react-compose-refs" "1.1.0"
-
-"@radix-ui/react-slot@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-slot/-/react-slot-1.1.0.tgz#7c5e48c36ef5496d97b08f1357bb26ed7c714b84"
   integrity sha512-FUCf5XMfmW4dtYl69pdS4DbxKy8nj4M7SafBgPllysxmdachynNflAdp/gCsnYWNDnge6tI9onzMp5ARYc1KNw==
   dependencies:
     "@radix-ui/react-compose-refs" "1.1.0"
@@ -924,6 +917,18 @@
   version "0.0.29"
   resolved "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
+
+"@types/lodash.debounce@^4.0.9":
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@types/lodash.debounce/-/lodash.debounce-4.0.9.tgz#0f5f21c507bce7521b5e30e7a24440975ac860a5"
+  integrity sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.17.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.7.tgz#2f776bcb53adc9e13b2c0dfd493dfcbd7de43612"
+  integrity sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==
 
 "@types/mdast@^3.0.0":
   version "3.0.15"
@@ -2898,6 +2903,11 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
@@ -4234,6 +4244,7 @@ run-parallel@^1.1.9:
     "@blocknote/react" "^0.15.6"
     "@hookform/resolvers" "^3.9.0"
     "@prisma/client" "^5.19.1"
+    "@radix-ui/react-alert-dialog" "^1.1.1"
     "@radix-ui/react-dropdown-menu" "^2.1.1"
     "@radix-ui/react-icons" "^1.3.0"
     "@radix-ui/react-label" "^2.1.0"
@@ -4244,6 +4255,7 @@ run-parallel@^1.1.9:
     class-variance-authority "^0.7.0"
     clsx "^2.1.1"
     date-fns "^3.6.0"
+    lodash.debounce "^4.0.8"
     lucide-react "^0.438.0"
     next "14.2.7"
     next-auth "^5.0.0-beta.20"
@@ -4251,7 +4263,7 @@ run-parallel@^1.1.9:
     react "^18"
     react-dom "^18"
     react-hook-form "^7.53.0"
-    s-notes "file:C:/Users/st0pcha/AppData/Local/Yarn/Cache/v6/npm-s-notes-0.1.0-983d2eb9-0721-4fd5-805b-30b39dfdcb45-1725708453373/node_modules/s-notes"
+    s-notes "file:C:/Users/st0pcha/AppData/Local/Yarn/Cache/v6/npm-s-notes-0.1.0-780cfdc0-e85c-4a31-9efb-a3d5c07f737e-1725718836045/node_modules/s-notes"
     tailwind-merge "^2.5.2"
     tailwindcss-animate "^1.0.7"
     zod "^3.23.8"

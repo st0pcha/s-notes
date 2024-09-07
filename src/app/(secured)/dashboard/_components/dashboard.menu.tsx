@@ -4,7 +4,7 @@ import Logo from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { useUser } from '@/hooks/use-user'
 import { cn } from '@/lib/utils'
-import { Home, Settings2, Trash2 } from 'lucide-react'
+import { Home, Settings2 } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 import CreateNoteButton from './create-note.button'
@@ -41,12 +41,6 @@ const DashboardMenu = () => {
 					<Button variant='ghost'>
 						<span className='flex text-lg'>
 							<Settings2 className='mr-2 h-4 w-4' /> Settings
-						</span>
-					</Button>
-
-					<Button variant='ghost'>
-						<span className='flex text-lg'>
-							<Trash2 className='mr-2 h-4 w-4' /> Trash
 						</span>
 					</Button>
 

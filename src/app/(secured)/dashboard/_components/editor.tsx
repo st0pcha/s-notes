@@ -1,11 +1,13 @@
 'use client'
 
+import { updateNoteData } from '@/actions/dashboard'
 import { ExtendedUser } from '@/types/next-auth'
 import '@blocknote/core/fonts/inter.css'
 import { BlockNoteView, lightDefaultTheme, Theme } from '@blocknote/mantine'
 import '@blocknote/mantine/style.css'
 import { useCreateBlockNote } from '@blocknote/react'
 import { Note } from '@prisma/client'
+import debounce from 'lodash.debounce'
 
 interface EditorProps {
 	note: Note
@@ -26,10 +28,19 @@ const Editor = ({ note, user }: EditorProps) => {
 
 	const editor = useCreateBlockNote({ initialContent })
 
-	// const canEdit = note.users.includes(user?.id) || note.ownerId === user?.id
-
 	if (typeof document === 'undefined') {
 		return null
+	}
+
+	const debounceUpdate = debounce(async (data: any) => {
+		const response = await updateNoteData(data, user?.id, note.id)
+		if (response.error) {
+			console.error(response.error)
+		}
+	}, 1000)
+
+	const onChange = () => {
+		debounceUpdate(editor.document)
 	}
 
 	const theme = {
@@ -67,12 +78,13 @@ const Editor = ({ note, user }: EditorProps) => {
 		fontFamily: 'Helvetica Neue, sans-serif',
 	} satisfies Theme
 
+	const canEdit = note.ownerId === user?.id
 	return (
 		<BlockNoteView
 			theme={theme}
 			editor={editor}
-			editable={true}
-			onChange={() => console.log(JSON.stringify(editor.document, null, 2))}
+			editable={canEdit}
+			onChange={onChange}
 		/>
 	)
 }
