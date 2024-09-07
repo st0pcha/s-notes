@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { useToast } from '@/hooks/use-toast'
 import { Plus } from 'lucide-react'
 import { User } from 'next-auth'
+import { useRouter } from 'next/navigation'
 
 interface CreateNoteButtonProps {
 	user: User
@@ -12,6 +13,7 @@ interface CreateNoteButtonProps {
 
 const CreateNoteButton = ({ user }: CreateNoteButtonProps) => {
 	const { toast } = useToast()
+	const router = useRouter()
 
 	const onClick = async () => {
 		createNote(user?.id).then(res => {

@@ -41,11 +41,12 @@ export const deleteNote = async (
 
 	const user = await prisma.user.findUnique({ where: { id: userId } })
 	if (!user) return { error: 'User not exist!' }
-
 	if (!noteId) return { error: 'This note is not exists or already deleted!' }
-	const note = await prisma.note.delete({ where: { id: noteId } })
 
+	const note = await prisma.note.findUnique({ where: { id: noteId } })
 	if (!note) return { error: 'This note is not exists or already deleted!' }
+
+	await prisma.note.delete({ where: { id: noteId } })
 
 	return { note }
 }

@@ -17,6 +17,7 @@ import { useToast } from '@/hooks/use-toast'
 import { Note } from '@prisma/client'
 import { Delete } from 'lucide-react'
 import { User } from 'next-auth'
+import { useRouter } from 'next/navigation'
 
 interface DeleteNoteButtonProps {
 	user: User
@@ -25,9 +26,9 @@ interface DeleteNoteButtonProps {
 
 const DeleteNoteButton = ({ user, note }: DeleteNoteButtonProps) => {
 	const { toast } = useToast()
-
-	if (!user || !note) return null
-	if (user.id !== note.ownerId) return null
+	const router = useRouter()
+	if (!user || !note) return
+	if (user.id !== note.ownerId) return
 
 	const onClick = () => {
 		deleteNote(user.id, note.id).then(res => {
@@ -37,6 +38,8 @@ const DeleteNoteButton = ({ user, note }: DeleteNoteButtonProps) => {
 					title: 'Uh.. Something went wrong.',
 					description: res.error,
 				})
+			} else {
+				router.push(`/dashboard/${user.id}`)
 			}
 		})
 	}
