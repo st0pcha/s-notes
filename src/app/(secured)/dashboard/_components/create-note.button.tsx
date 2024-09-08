@@ -3,17 +3,12 @@
 import { createNote } from '@/actions/dashboard'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/hooks/use-toast'
+import { useUser } from '@/hooks/use-user'
 import { Plus } from 'lucide-react'
-import { User } from 'next-auth'
-import { useRouter } from 'next/navigation'
 
-interface CreateNoteButtonProps {
-	user: User
-}
-
-const CreateNoteButton = ({ user }: CreateNoteButtonProps) => {
+const CreateNoteButton = () => {
 	const { toast } = useToast()
-	const router = useRouter()
+	const user = useUser()
 
 	const onClick = async () => {
 		createNote(user?.id).then(res => {

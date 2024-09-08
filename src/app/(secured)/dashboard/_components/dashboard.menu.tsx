@@ -4,17 +4,18 @@ import Logo from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { useUser } from '@/hooks/use-user'
 import { cn } from '@/lib/utils'
-import { Home, Settings2 } from 'lucide-react'
+import { Home } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 import CreateNoteButton from './create-note.button'
 import GetNotes from './get-notes'
 import HideButton from './hide.button'
+import UserSettingsDialog from './user-settings/user-settings.dialog'
 
 const DashboardMenu = () => {
 	const user = useUser()
 	const [isHidden, setIsHidden] = useState(false)
-
+	console.log(user)
 	if (!user) return null
 
 	return (
@@ -38,13 +39,9 @@ const DashboardMenu = () => {
 						</Link>
 					</Button>
 
-					<Button variant='ghost'>
-						<span className='flex text-lg'>
-							<Settings2 className='mr-2 h-4 w-4' /> Settings
-						</span>
-					</Button>
+					<UserSettingsDialog />
 
-					<CreateNoteButton user={user} />
+					<CreateNoteButton />
 				</div>
 
 				<GetNotes type='favorite' />
