@@ -39,8 +39,8 @@ const LoginForm = () => {
 
 		setTransition(() => {
 			login(data).then(res => {
-				if (res.error) setError(res.error)
-				if (res.success) setSuccess(res.success)
+				if (res && res.error) setError(res.error)
+				if (res && res.success) setSuccess(res.success)
 			})
 		})
 	}
