@@ -1,12 +1,12 @@
 'use server'
 
 import { limits } from '@/config/limits.config'
-import { prisma } from '@/lib/database'
 import {
 	getNotesFavorite,
 	getNotesWhereUser,
 	getNotesWhereUserOwner,
-} from '@/lib/database/note.db'
+} from '@/database/note.db'
+import { prisma } from '@/lib/database'
 import { Note } from '@prisma/client'
 
 interface NoteResponse {

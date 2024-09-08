@@ -2,13 +2,13 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import { Note } from '@prisma/client'
 import NextAuth from 'next-auth'
 import authConfig from './config/auth.config'
-import { prisma } from './lib/database'
 import {
 	getNotesFavorite,
 	getNotesWhereUser,
 	getNotesWhereUserOwner,
-} from './lib/database/note.db'
-import { getUserById } from './lib/database/user.db'
+} from './database/note.db'
+import { getUserById } from './database/user.db'
+import { prisma } from './lib/database'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 	adapter: PrismaAdapter(prisma),

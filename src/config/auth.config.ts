@@ -1,4 +1,4 @@
-import { getUserByEmail } from '@/lib/database/user.db'
+import { getUserByEmail } from '@/database/user.db'
 import { comparePassword } from '@/lib/password.util'
 import { LoginSchema } from '@/schemas/login.schema'
 import { NextAuthConfig } from 'next-auth'

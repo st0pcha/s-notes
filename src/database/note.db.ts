@@ -1,5 +1,5 @@
 import { Note } from '@prisma/client'
-import { prisma } from '.'
+import { prisma } from '../lib/database'
 
 export const getNoteById = async (id: string): Promise<Note | null> => {
 	return await prisma.note.findUnique({ where: { id } })
