@@ -15,7 +15,6 @@ import UserSettingsDialog from './user-settings/user-settings.dialog'
 const DashboardMenu = () => {
 	const user = useUser()
 	const [isHidden, setIsHidden] = useState(false)
-	console.log(user)
 	if (!user) return null
 
 	return (
